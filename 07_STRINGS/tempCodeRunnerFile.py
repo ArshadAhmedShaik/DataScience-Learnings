@@ -1,0 +1,5 @@
+print(name.upper())
+# str = name.upper()
+# print(str)
+# print(name)
+# print(name.lower())
