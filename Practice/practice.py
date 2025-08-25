@@ -5,7 +5,6 @@
 
 
 # # lambda functions in py
-
 # # normal function:
 
 # def add(a, b):
@@ -287,8 +286,6 @@
 # # allignment of text:
 # text = "Python"
 
-
-
 # also used for padding:
 
 # print(f"{text:<10}")
@@ -460,6 +457,293 @@
 
 # squares = {x:x**2 for x in range(0, 5)}
 # print(squares)
+
+#for x in my_dict:
+    # print(x)  this prints only keys :)
+
+# for x in range(4, 50):
+# #   print(x)
+
+# numbers = [1, 2, 3 , 4]
+# num_list = list(map(lambda x: x**2 ,numbers))
+# print(num_list)
+
+# OOPS:
+
+# each object -> data(attributes) -> actions(methods)
+# reusablity -> reusing same class multiple times
+# OOPS -> to represent real world objects as code
+# and establishing relationships btw them
+
+# 4 pillars of OOPS:
+
+'''
+1) Abstraction: Hiding complex details and showing only the essential information to the users
+2) Encapsulation: A class encapsulates: 1)attributes(data) + 2)Methods(actions), protects data
+3) Inheritance: Inheriting attributes and methods of a parent class to a child class
+4) Polymorphism: poly(many), morph(forms) || Animal class has a method -> Dog inherits the method with same name but diff operation
+'''
+
+# class(Blueprint) : it is like instructions for creating an object
+# object(Instance) : instance created from the class/blueprint
+# each object has its own set of unique data
+
+# class -> architechtural plan
+# object -> actual house built from that plan
+
+# OOPS code:
+
+# class Dog:
+#   # this is a class attribute
+#   species = "Canis familiaris"
+#   # this is a constructor
+#   def __init__(self, name, breed):
+#     print(name, breed, sep = ",")
+#     self.name = name #instance attribute
+#     self.breed = breed #instance attribute
+#   def bark(self):
+#     print(f"{self.name} says Woof!")
+
+# # create some Dog objects:
+
+# my_dog = Dog("hehe", "GermanShepered")
+# another_dog = Dog("bebe", "Golden Retriever")
+
+# print(my_dog.name)
+# print(my_dog.breed)
+# print(another_dog.name)
+# print(another_dog.breed)
+
+# my_dog.bark()
+
+# print(Dog.species)
+
+# chat-gpt question:
+
+# class Car:
+#     # this is a class attribute
+#     wheels = 4
+#     # for instance attributes we need a constructor:
+#     def __init__(self, brand, model):
+#           self.brand = brand
+#           self.model = model
+#     def drive(self):
+#           print(f"{self.brand} {self.model} is driving!")
+  
+
+# # Creating Car objects
+# car1 = Car("Toyota", "Corolla")
+# car2 = Car("Tesla", "Model S")
+
+# # Accessing attributes
+# print(car1.brand)     # Output: Toyota
+# print(car2.model)     # Output: Model S
+# print(Car.wheels)   
+#   # Output: 4 (class attribute shared by all cars)
+
+# # Calling methods
+# car1.drive()          # Output: Toyota Corolla is driving!
+# car2.drive()          # Output: Tesla Model S is driving!
+
+
+# What is self?
+# inside a class self means "this particular object"
+# way of an object representing itself
+
+# class vs instance attributes:
+
+# class -> shared by all objects
+# instance attributes ->usually defined within __init__ method
+# specific to that particular object
+
+# constructor:
+
+# class Dog:
+#   def __init__(self, name="Unknown", breed="Mixed"):
+#     print("Welcome to the constructor!")
+#     self.name = name
+#     self.breed = breed
+
+# my_dog = Dog()
+# my_dog = Dog(breed="hehe")
+# print(my_dog.name)
+# print(my_dog.breed)
+# my_dog = Dog("Fido", "Poodle")
+
+# inheritance:
+
+# class Dog(Animal):
+#   def __init__(self, name):
+#     self.name = name
+# # Override from parent class 
+# # specific to this object
+#   def speak(self):
+#     print("Woof!")
+
+# class Cat(Animal):
+#   def speak(self):
+#     print("Meow!")
+
+# my_dog = Dog("Rover")
+# my_cat = Cat("Fluffy")
+
+# print(my_dog.name)
+# print(my_cat.name)
+
+# my_dog.speak()
+# my_cat.speak()
+
+
+# what is super() ?
+
+# class Animal:
+#   def __init__(self, name):
+#     self.name = name
+#   def speak(self): # generic thing/ overall thing
+#     print("Generic animal sound") 
+
+# class Bird(Animal):
+#    def __init__(self, name, wingspan):
+#      super().__init__(name)
+#      self.wingspan = wingspan     
+
+# my_bird = Bird("Tweety", 10)
+# print(my_bird.name)
+# print(my_bird.wingspan)
+
+# child can acces the parent's method by calling super().method()
+
+# MAGIC-METHODS❤️ OR DUNDER-METHODS❤️:
+# useful for operator overloading
+# methods have double underscores at front and behind the method name
+
+# class Point:
+#   def __init__(self, x, y):
+#     self.x = x
+#     self.y = y
+#   def __add__(self, other):
+#     return Point(self.x + other.x, self.y + other.y)
+#   # represents calss objects in the form of string roii  
+#   def __str__ (self):
+#     return f"({self.x}, {self.y})"
+#   def __eq__(self, other):
+#     return (self.x==other.x) and (self.y==other.y)
+    
+# p1 = Point(1, 2)
+# p2 = Point(1, 2)
+
+# p3 = p1 + p2
+
+# # when you print(p3) it will call the dunder method -> __str__(self)....etc;
+# print(p3)
+
+# print(p1==p2)
+
+# getters and setters(controlling access to attributes):
+# Instead of exposing attributes directly,
+# we provide getters (to read) and setters (to modify).
+# getters and setters are for encapsulation in a class.
+
+# dict = {x:x**2 for x in range(0,10)}
+
+# class Person:
+#   def __init__(self, name, age):
+#     self.name = name
+#     self._age = age
+
+#   def get_age(self):
+#     return self._age  
+    
+#   def set_age(self, new_age):
+#     if new_age >= 0 and new_age <= 150:
+#       self._age = new_age
+#     else:
+#       print("Invalid age!")    
+
+# person = Person("Alice", 30)
+# print(person.get_age())
+
+# person.set_age(35)
+# print(person.get_age())
+
+# person.set_age(-10)
+# print(person.get_age())
+
+# The pythonic way: @property decorator
+
+# class Person:
+#     def __init__(self, name, age):
+#       self.name = name
+#       self._age = age
+#     @property  #getter
+#     def age(self):
+#        return self._age
+#     @age.setter
+#     def age(self, new_age):
+#         if(new_age >= 0 and new_age <= 150):
+#           self._age = new_age
+#         else:
+#            print("Invalid age")
+
+# # @property and @age.setter
+
+# person = Person("Bob", 40)
+# print(person.age)
+# person.age = 47
+# print(person.age)
+# person.age = -22
+# print(person.age)
+
+#  @property -> name can be age 
+#  @age.setter -> same name used in property
+       
+# (_age) -> convention for private use 
+# in class only! don't access this
+#  directly from outside the class; 
+# use the provided getters and setters 
+# instead        
+
+class MyClass:
+   def __init__(self):
+      self._internal_value = 0
+
+   @property
+   def internal_value(self):
+      return self._internal_value
+   
+   @internal_value.setter
+   def internal_value(self, value):
+      self._internal_value = value
+
+   # wrong x infinite recursion! bro!
+#    def _internal_value(self):
+#       return self._internal_value   
+
+obj = MyClass()
+
+print(obj.internal_value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
