@@ -1,3 +1,8 @@
-print(Animal.get_species())
-# Animal.set_species("Reptile")
-# print(Animal.get_species())
+a = int(input("Enter number 1:"))
+b = int(input("Enter number 2:"))
+
+
+if b == 0:
+  raise ValueError("Please don't divide by 0")
+
+print(f"The sum is {a / b}")

@@ -942,14 +942,74 @@
   
 # print(MathUtils.add(3, 5))
 
+# dunder methods:
+
+# # 1) __init__
+
+# class Person:
+#   def __init__(self, name, age):
+#     self.name = name
+#     self.age = age
+
+# p = Person("Arshad", 45)
+# print(p.name, p.age) 
+
+# __str__ and __repr__
+
+# class Person:
+#   def __init__(self, name, age):
+#     self.name = name
+#     self.age = age
+#   def __str__(self):
+#     return f"Person({self.name}, {self.age})"  
+#   def __repr__(self):
+#     return f"Person(name = '{self.name}', age = {self.age})"
+
+# p = Person("Arshad", 30)
+# print(str(p))
+# print(repr(p))
+# print(p)
+
+# 3) __len__()
+
+# class Book:
+#   def __init__(self, title, pages):
+#     self.title = title
+#     self.pages = pages
+#   def __len__(self):
+#     return self.pages 
+
+# b = Book("Python 101", 250)
+# print(len(b))
+# 
+# # 4) operator overloading add,sub,mul
+
+# exceptional handling and custom errors in python
+
+# errors in python:
+
+# while True:
+#   try:
+#     a = int(input("Enter number 1:"))
+#     b = int(input("Enter number 2:"))
+#     print(f"The sum is {a + b}")
+#   except ValueError:
+#     print("Please don't perform bad calculations")  
+#   except ZeroDivisionError:
+#     print("Hey! don't divide by 0")  
+#   except Exception as e:
+#     print("Some error occured", e)  
 
 
 
+a = int(input("Enter number 1:"))
+b = int(input("Enter number 2:"))
 
 
+if b == 0:
+  raise ValueError("Please don't divide by 0")
 
-
-
+print(f"The sum is {a / b}")
 
 
 
