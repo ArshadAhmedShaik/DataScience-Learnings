@@ -1,1 +1,3 @@
-print(type(list(list3)))
+print(Animal.get_species())
+# Animal.set_species("Reptile")
+# print(Animal.get_species())

@@ -661,67 +661,297 @@
 #       print("Invalid age!")    
 
 # person = Person("Alice", 30)
-# print(person.get_age())
+# # print(person.get_age())
 
-# person.set_age(35)
-# print(person.get_age())
+# # person.set_age(35)
+# # print(person.get_age())
 
-# person.set_age(-10)
-# print(person.get_age())
+# # person.set_age(-10)
+# # print(person.get_age())
 
-# The pythonic way: @property decorator
+# # The pythonic way: @property decorator
+
+# # class Person:
+# #     def __init__(self, name, age):
+# #       self.name = name
+# #       self._age = age
+# #     @property  #getter
+# #     def age(self):
+# #        return self._age
+# #     @age.setter
+# #     def age(self, new_age):
+# #         if(new_age >= 0 and new_age <= 150):
+# #           self._age = new_age
+# #         else:
+# #            print("Invalid age")
+
+# # # @property and @age.setter
+
+# # person = Person("Bob", 40)
+# # print(person.age)
+# # person.age = 47
+# # print(person.age)
+# # person.age = -22
+# # print(person.age)
+
+# #  @property -> name can be age 
+# #  @age.setter -> same name used in property
+       
+# # (_age) -> convention for private use 
+# # in class only! don't access this
+# #  directly from outside the class; 
+# # use the provided getters and setters 
+# # instead        
+
+# class MyClass:
+#    def __init__(self):
+#       self._internal_value = 0
+
+#    @property
+#    def internal_value(self):
+#       return self._internal_value
+   
+#    @internal_value.setter
+#    def internal_value(self, value):
+#       self._internal_value = value
+
+#    # wrong x infinite recursion! bro!
+# #    def _internal_value(self):
+# #       return self._internal_value   
+
+# obj = MyClass()
+
+# print(obj.internal_value)
+# obj.internal_value = 45
+# print(obj.internal_value)
+
+# decorators: meta-programming
+# where one part of the program tries to modify 
+# another part of the program at compile time
+
+# can accept functions and return functions as well!
+
+# def my_decorator(func):
+#     def wrapper():
+#        print("Before calling func()")
+#        func()
+#        print("After calling func()")
+#     return wrapper   
+
+
+# # the wrapper function adds 
+# # behaviour before 
+# # and after the function call
+
+# @my_decorator
+# def say_hello():
+# #   print("Hello")
+
+# # f = my_decorator(say_hello)
+# # f()
+
+# # using decorators with arguments:
+
+
+# def repeat(n):
+#   def decorator(func):
+#     def wrapper(name):
+#       for i in range(n):
+#         func(name)
+#     return wrapper
+#   return decorator    
+
+
+
+# @repeat(3)
+# def greet(name):
+#   print(f"Hello, {name}!")
+
+
+# greet("Arshad")
+
+
+# def uppercase(func):
+#   def wrapper(name):
+#       result = func(name)
+#       return result.upper()
+#   return wrapper    
+
+# @uppercase
+# def say(name):
+#   return f"Hello, {name}"
+
+# print(say("Arshad"))
+
+# chaining multiple decorators
+# bottom to top:
+
+# def uppercase(func):
+#   def wrapper():
+#     return func().upper()
+#   return wrapper
+
+# def exclaim(func):
+#   def wrapper():
+#     return func() + "!!!"
+#   return wrapper
+ 
+# @uppercase  # this will be shown as output
+# @exclaim
+# def greet():
+#   return "hello"
+
+# print(greet())
+
+# order -> bottom to top
+
+# the function will be decorated from
+# bottom to up
+# finally top one is shown in output
+
+# getters and setters in python
+
+# provide a way to encapsulate
+# _ before variable is used as a 
+# # convention for private var in py
+
+# # traditional approach:
 
 # class Person:
-#     def __init__(self, name, age):
-#       self.name = name
-#       self._age = age
-#     @property  #getter
-#     def age(self):
-#        return self._age
-#     @age.setter
-#     def age(self, new_age):
-#         if(new_age >= 0 and new_age <= 150):
-#           self._age = new_age
-#         else:
-#            print("Invalid age")
+#   def __init__(self, name):
+#     self._name = name
+#   def get_name(self):
+#     return self._name
+#   def set_name(self, new_name):
+#     self._name = new_name
 
-# # @property and @age.setter
+# p = Person("Arshad")
+# print(p.get_name())
+# p.set_name("bru")
+# print(p.get_name())
 
-# person = Person("Bob", 40)
-# print(person.age)
-# person.age = 47
-# print(person.age)
-# person.age = -22
-# print(person.age)
+# # python way of doing it:
 
-#  @property -> name can be age 
-#  @age.setter -> same name used in property
-       
-# (_age) -> convention for private use 
-# in class only! don't access this
-#  directly from outside the class; 
-# use the provided getters and setters 
-# instead        
+# # @property -> getter
+# # @var.setter -> setter
 
-class MyClass:
-   def __init__(self):
-      self._internal_value = 0
+# class Person:
+#   def __init__(self, name):
+#     self._name = name
+#   @property
+#   def name(self):
+#     return self._name 
+#   @name.setter
+#   def name(self, new_name):
+#     self._name = new_name
 
-   @property
-   def internal_value(self):
-      return self._internal_value
-   
-   @internal_value.setter
-   def internal_value(self, value):
-      self._internal_value = value
+# p = Person("Arshad")
+# print(p.name)
+# p.name = "Brindha"
+# print(p.name)
 
-   # wrong x infinite recursion! bro!
-#    def _internal_value(self):
-#       return self._internal_value   
 
-obj = MyClass()
+# if u want read only properties then just omit
+# @var.setter
 
-print(obj.internal_value)
+# @property.deleter -> it deletes a property
+
+# class Person:
+#   def __init__(self, name):
+#     self._name = name
+#   @property
+#   def name(self):
+#     return self._name
+#   @name.setter
+#   def name(self, new_name):
+#     self._name = new_name
+#   @name.deleter
+#   def name(self):
+#     del self._name    
+
+# p = Person("Arshad")
+# print(p.name)
+# del p.name
+# print(p.name) -> produces error
+# as the attribute is deleted
+
+# read only property:
+# include only @property
+# but not @var.setter
+
+# static,class,instance methods in python:
+
+'''
+1) instance methods
+2) class methods
+3) static methods -> no self or cls
+'''
+
+# 1) instance(default in py)
+
+# class Dog:
+#   def __init__(self, name):
+#     self._name = name
+#   def speak(self):
+#     return f"{self._name} barks"
+
+# dog = Dog("Yaga")
+# print(dog.speak())  
+# 
+# 
+# # class methods:
+# # 
+# class Animal:
+#   species = "Mammal"  #this is a class attribute
+#   @classmethod
+#   def set_species(cls, new_species):
+#     cls.species = new_species
+#   @classmethod
+#   def get_species(cls):
+#     return cls.species
+
+
+# # # print(Animal.get_species())
+# # # Animal.set_species("Reptile")
+# # # print(Animal.get_species())
+
+# # # you can also call class methods on instances
+
+# # a = Animal()
+# # print(a.get_species())
+
+# class Person:
+#   def __init__(self, name, age):
+#     self.name = name
+#     self.age = age
+#   @classmethod
+#   def from_string(cls, data):
+#     name, age = data.split("-")
+#     return cls(name, int(age))  
+
+# p = Person.from_string("Arshad-70")
+# print(p.name, p.age)
+
+# static method:
+# they don't take self or cls as parameters
+
+# class MathUtils:
+#   @staticmethod
+#   def add(a, b):
+#     return a + b
+  
+# print(MathUtils.add(3, 5))
+
+
+
+
+
+
+
+
+
+
+
 
 
 
