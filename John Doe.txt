@@ -1,0 +1,7 @@
+
+John Doe is a nice guy.
+He lives in NYC.
+His fav package is Pandas.
+
+    hi bro!!
+    what's up?
