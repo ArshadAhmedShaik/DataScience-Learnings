@@ -93,3 +93,159 @@
 #       while(line:=f.readline()):
 #             print(line.strip())
 
+# without walrus operator:
+
+# with open("arshad.txt", "r") as f:
+#   line = f.readline()
+#   while line:
+#     print(line.strip())
+#     line = f.readline()
+
+# with walrus operator:
+
+# with open("arshad.txt", "r") as f:
+#   while(line:=f.readline()):
+# #     print(line.strip())    
+
+# with open("arshad.txt", "r") as f:
+#   while(line:=f.readline()):
+#     print(line.strip())
+
+# why with?
+# it automatically close the file
+# no need to close it manually!
+
+# Args and kwargs:
+# *args, **kwargs
+
+# *args -> positional variables -> stores in a tuple
+# collects any extra positional variables
+# *kwargs -> keyword arguments
+
+#tuples:
+
+# def my_function(*args):
+#   print(type(args))
+#   print(args)
+
+# my_function(1)
+
+# **kwargs:
+
+# def my_function(**kwargs):
+#   print(type(kwargs))
+#   print(list(kwargs.keys()))
+
+# my_function(name="Arshad", age=30)
+
+# when using args and kwargs at the same time 
+# use *args before **kwargs
+
+# def my_function(a, b, *args, c = 10, **kwargs):
+#   print(a)
+#   print(b)
+#   print(args)
+#   print(c)
+#   print(kwargs)
+
+# my_function(1,2)  
+
+# use of *args and **kwargs:
+# can be used in decorators:
+
+# example:
+
+# class Animal:
+#   def __init__(self, name):
+#     self.name = name
+
+# class Dog:
+#   def __init__(self, name, breed, *args, **kwargs):
+#     super().__init__(name)
+#     self.breed = breed
+#     print(args)
+#     print(kwargs)
+
+# dog1 = Dog("Buddy", "Golden Retriever")    
+# dog2 = Dog("Licy", 1, 2, 3, color = "bLck", age = 5)
+# 1,2,3 will be stored as (1,2,3) 
+# in a tuple by args, and rest will
+#  be stored as a map by **kwargs
+# map = {1:23, "hello":45}
+# print(list(map)) # converts t0 key list not value list
+
+# reading from a file:
+
+# try:
+#   file = open("arshad.txt", "r")
+#   content = file.read()
+#   print(content)
+#   file.close()
+# except FileNotFoundError:
+#   print("File Not Found")
+
+# reading a file line by line:
+
+# try:
+#   file = open("arshad.txt", "r")
+#   for line in file:
+#     print(line.strip())
+#   file.close()
+# except FileNotFoundError:
+#   print("File Not Found!")    
+
+# writing to a file:
+# with open("Arshad.txt", "w") as f:
+#   f.write("Hello World!\n")
+#   f.write("This is new Line!\n")
+#   f.close()
+
+# file = open("arshad.txt", "a")
+# file.write("This is an appended text!\n")
+# file.close()
+
+# OS and shutil modules in python
+
+# os -> deals with file,directories
+# shutil -> offers higher level file operations!
+
+import os
+
+# current_dir = os.getcwd()
+# print(current_dir)
+
+# os.mkdir("new_directory")
+# os.mkdir("24_FILES/new_directory")
+# creates nested directorys
+
+# os.chdir("new_directory")
+
+# files = os.listdir(".")
+# print(files)
+
+#this removes only files!
+# os.remove("my_file.txt")
+# os.rmdir() -> removes empty directory!
+
+# shutil.rmtree() removes non-empty directory
+# os.rename("old.txt", "new.txt")
+
+# if(os.path.exists("arshad.txt")):
+#   print("File Exists!")
+# print(os.path.exists("24_FILES/append.py"))
+
+# path = os.path.join("folder", "")# u can always join path components!
+
+# import shutil
+
+# # shutil.rmtree()
+# shutil.copy(".txt", ".txt")
+# # copy from left to right
+
+# shutil.move("arshad.txt", "....directory with /")
+# what are command line utilities?
+# handling command line arguments using argparse module
+# from functools import reduce
+
+
+
