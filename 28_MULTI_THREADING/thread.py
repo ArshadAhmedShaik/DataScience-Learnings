@@ -20,4 +20,4 @@ for thread in threads:
 print("All threads completed!")   
 
 # what is gil -> global interpretor lock in python:
-# at a time only one thread is allowe dto execute python bytecode
+# at a time only one thread is allowed to execute python bytecode
